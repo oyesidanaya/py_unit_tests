@@ -1,5 +1,6 @@
 import unittest
-from src import area
+from src.geometry import area
+
 
 class TestArea(unittest.TestCase):
 

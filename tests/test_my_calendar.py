@@ -1,5 +1,5 @@
 import unittest
-from src.calendar import my_calendar
+from src.calendar_util import my_calendar
 from unittest.mock import patch
 from unittest.mock import Mock
 from datetime import datetime
@@ -8,7 +8,7 @@ from requests.exceptions import Timeout
 
 class TestMyCalendar(unittest.TestCase):
 
-    @patch('src.calendar.my_calendar.datetime')
+    @patch('src.calendar_util.my_calendar.datetime')
     def test_today_is_a_weekday(self, mock_datetime):
         monday = datetime(year=2020, month=7, day=6)
         saturday = datetime(year=2020, month=7, day=4)
@@ -21,7 +21,7 @@ class TestMyCalendar(unittest.TestCase):
         self.assertFalse(my_calendar.today_is_a_weekday())
 
     def test_get_holidays(self):
-        with patch('src.calendar.my_calendar.requests') as mock_requests:
+        with patch('src.calendar_util.my_calendar.requests') as mock_requests:
             response_mock = Mock()
             response_mock.status_code = 200
             response_mock.json.return_value = {

@@ -5,5 +5,3 @@ install:
   - pip install -r requirements.txt
 script:
   - python -m pytest --cov-report term --cov=src
-after_success:
-  - codecov

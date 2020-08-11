@@ -7,4 +7,3 @@ script:
   - coverage run --source=src -m pytest
 after_success:
   - coverage report -m
-  - coverage html

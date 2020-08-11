@@ -4,4 +4,7 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - python -m pytest --cov-report term --cov=src
+  - coverage run --source=src -m pytest
+after_success:
+  - coverage report -m
+  - coverage html

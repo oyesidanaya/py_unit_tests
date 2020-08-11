@@ -8,6 +8,7 @@ from requests.exceptions import Timeout
 
 class TestMyCalendar(unittest.TestCase):
 
+    # Patch as a Decorator
     @patch('src.calendar_util.my_calendar.datetime')
     def test_today_is_a_weekday(self, mock_datetime):
         monday = datetime(year=2020, month=7, day=6)
@@ -20,6 +21,7 @@ class TestMyCalendar(unittest.TestCase):
         # check for a saturday
         self.assertFalse(my_calendar.today_is_a_weekday())
 
+    # Patch as a Context Manager
     def test_get_holidays(self):
         with patch('src.calendar_util.my_calendar.requests') as mock_requests:
             response_mock = Mock()
@@ -34,6 +36,7 @@ class TestMyCalendar(unittest.TestCase):
             self.assertEqual("Christmas", holidays_response['12/25'])
             self.assertEqual("New Year", holidays_response['01/01'])
 
+    # Patching an Object’s Attributes
     @patch.object(my_calendar.requests, 'get', side_effect=Timeout)
     def test_get_holidays_timeout(self, mock_requests):
         with self.assertRaises(Timeout):
